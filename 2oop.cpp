@@ -2,7 +2,7 @@
 #include<conio.h>
 class Rectangle {
 public:
-	Rectangle() {
+	Rectangle() {//конструктор по умолчанию
 		length = 10;
 		width = 20;
 		square = length * width;
@@ -10,7 +10,7 @@ public:
 		name = "qwerty";
 		std::cout << "Rectangle()" << std::endl;
 	};
-	Rectangle(int length, int width) {
+	Rectangle(int length, int width) {//конструктор c параметрами
 		this->length = length;
 		this->width = width;
 		square = length * width;
@@ -18,7 +18,7 @@ public:
 		name = "qwerty";
 		std::cout << "Rectangle(int length,int width)" << std::endl;
 	};
-	Rectangle(const Rectangle& copyrectangle) {
+	Rectangle(const Rectangle& copyrectangle) {//конструктор копирования
 		length = copyrectangle.length;
 		width = copyrectangle.width;
 		square = length * width;
@@ -31,7 +31,13 @@ public:
 		std::cout << index << std::endl << name << std::endl;
 		std::cout << "~Rectangle()" << std::endl;
 	};
+	void lwChange(int dlength, int dwidth) {//метод изменения значений свойств
+		length += dlength;
+		width += dwidth;
+		square = length * width;
+	}
 	std::string name;
+	void lwSwap();//метод замены значения свойств друг на друга
 protected:
 	int square;
 	int length;
@@ -39,16 +45,19 @@ protected:
 private:
 	int index;
 };
+void Rectangle::lwSwap() {//реализация метода вне описания класса
+	int temp = length;
+	length = width;
+	width = temp;
+}
 int main()
 {
 
-	Rectangle* a = new Rectangle;
-	Rectangle* b = new Rectangle(20, 10);
-	Rectangle* c = new Rectangle(*a);
-	delete a;
-	delete b;
-	delete c;
 
+	Rectangle* b = new Rectangle(20, 10);
+	b->lwChange(5, 10);
+	b->lwSwap();
+	delete b;
 	_getch();
 	return 0;
 }
