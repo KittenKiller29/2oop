@@ -86,9 +86,10 @@ int main()
 {
 
 
-	ColoredRectangle* b = new ColoredRectangle(20, 10,42);
-	
+	Rectangle* b = new ColoredRectangle(20, 10,42);
+	ColoredRectangle* a = new ColoredRectangle(1, 1, 1);
 	delete b;
+	delete a;
 	_getch();
 	return 0;
 }
