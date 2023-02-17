@@ -6,29 +6,26 @@ public:
 		length = 10;
 		width = 20;
 		square = length * width;
-		index = 0;
-		name = "qwerty";
+		
 		std::cout << "Rectangle()" << std::endl;
 	};
 	Rectangle(int length, int width) {//конструктор c параметрами
 		this->length = length;
 		this->width = width;
 		square = length * width;
-		index = 0;
-		name = "qwerty";
+		
 		std::cout << "Rectangle(int length,int width)" << std::endl;
 	};
 	Rectangle(const Rectangle& copyrectangle) {//конструктор копирования
 		length = copyrectangle.length;
 		width = copyrectangle.width;
 		square = length * width;
-		index = 0;
-		name = "qwerty";
+		
 		std::cout << "Rectangle(const Rectangle& copyrectangle)" << std::endl;
 	};
 	~Rectangle() {
 		std::cout << length << std::endl << width << std::endl << square << std::endl;
-		std::cout << index << std::endl << name << std::endl;
+		
 		std::cout << "~Rectangle()" << std::endl;
 	};
 	void lwChange(int dlength, int dwidth) {//метод изменения значений свойств
@@ -36,27 +33,61 @@ public:
 		width += dwidth;
 		square = length * width;
 	}
-	std::string name;
+	
 	void lwSwap();//метод замены значения свойств друг на друга
 protected:
 	int square;
 	int length;
 	int width;
-private:
-	int index;
+
 };
+
 void Rectangle::lwSwap() {//реализация метода вне описания класса
 	int temp = length;
 	length = width;
 	width = temp;
 }
+
+class ColoredRectangle : public Rectangle{
+public:
+	ColoredRectangle() : Rectangle() {//конструктор по умолчанию
+		
+		std::cout << "ColoredRectangle()" << std::endl;
+	};
+	ColoredRectangle(int length, int width,int color) : Rectangle(length,width) {//конструктор c параметрами
+		this->length = length;
+		this->width = width;
+		square = length * width;
+		this->color = color;
+		
+		std::cout << "ColoredRectangle(int length,int width,int color)" << std::endl;
+	};
+	ColoredRectangle(const ColoredRectangle& copyrectangle) {//конструктор копирования
+		length = copyrectangle.length;
+		width = copyrectangle.width;
+		color = copyrectangle.color;
+		
+		std::cout << "ColoredRectangle(const Rectangle& copyrectangle)" << std::endl;
+	};
+	~ColoredRectangle() {
+		std::cout << length << std::endl << width << std::endl ;
+		std::cout << square << std::endl << color << std::endl;
+		std::cout << "~ColoredRectangle()" << std::endl;
+	};
+	void colorSet(int color) {//метод установки цвета
+		this->color = color;
+	}
+	
+protected:
+	int color;
+};
+
 int main()
 {
 
 
-	Rectangle* b = new Rectangle(20, 10);
-	b->lwChange(5, 10);
-	b->lwSwap();
+	ColoredRectangle* b = new ColoredRectangle(20, 10,42);
+	
 	delete b;
 	_getch();
 	return 0;
