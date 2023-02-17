@@ -82,14 +82,59 @@ protected:
 	int color;
 };
 
+class Parallelepiped {
+protected:
+	Rectangle* r1;
+	Rectangle* r2;
+	Rectangle* r3;
+	Rectangle* r4;
+	Rectangle* r5;
+	Rectangle* r6;
+public:
+	Parallelepiped()  {//конструктор по умолчанию
+		std::cout << "Parallelepiped()" << std::endl;
+		r1 = new Rectangle;
+		r2 = new Rectangle;
+		r3 = new Rectangle;
+		r4 = new Rectangle;
+		r5 = new Rectangle;
+		r6 = new Rectangle;
+	};
+	Parallelepiped(int length, int width, int high)  {//конструктор c параметрами
+		std::cout << "Parallelepiped(int length,int width,int high)" << std::endl;
+		r1 = new Rectangle(length, width);
+		r2 = new Rectangle(length, width);
+		r3 = new Rectangle(high, width);
+		r4 = new Rectangle(high, width);
+		r5 = new Rectangle(length, high);
+		r6 = new Rectangle(length, high);
+	};
+	Parallelepiped(const Parallelepiped& parallelepiped) {//конструктор копирования
+		std::cout << "Parallelepiped(const Parallelepiped& parallelepiped)" << std::endl;
+		r1 = new Rectangle(*(parallelepiped.r1));
+		r2 = new Rectangle(*(parallelepiped.r2));
+		r3 = new Rectangle(*(parallelepiped.r3));
+		r4 = new Rectangle(*(parallelepiped.r4));
+		r5 = new Rectangle(*(parallelepiped.r5));
+		r6 = new Rectangle(*(parallelepiped.r6));
+	};
+	~Parallelepiped() {
+		delete r1;
+		delete r2;
+		delete r3;
+		delete r4;
+		delete r5;
+		delete r6;
+		std::cout << "~Parallelepiped()" << std::endl;
+	};
+};
+
 int main()
 {
-
-
-	Rectangle* b = new ColoredRectangle(20, 10,42);
-	ColoredRectangle* a = new ColoredRectangle(1, 1, 1);
-	delete b;
+	Parallelepiped* a = new Parallelepiped;
+	Parallelepiped* b = new Parallelepiped(*a);
 	delete a;
+	delete b;
 	_getch();
 	return 0;
 }
