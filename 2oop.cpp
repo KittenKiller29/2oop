@@ -41,11 +41,13 @@ private:
 };
 int main()
 {
-	{
-		Rectangle a;
-		Rectangle b(20, 10);
-		Rectangle c(a);
-	}
+
+	Rectangle* a = new Rectangle;
+	Rectangle* b = new Rectangle(20, 10);
+	Rectangle* c = new Rectangle(*a);
+	delete a;
+	delete b;
+	delete c;
 
 	_getch();
 	return 0;
